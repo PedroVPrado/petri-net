@@ -1,3 +1,4 @@
+import helper.PnmlReader;
 import logic.Petrinet;
  
 public class PetriGenerator {
@@ -13,8 +14,11 @@ public class PetriGenerator {
 
 		System.out.println("Filename: " + filename);
         System.out.println("N: " + loops);
+        
+        PnmlReader reader = new PnmlReader();
+        reader.readPNMLFile(filename);
 
-        new Petrinet(filename, loops);
+        //new Petrinet(filename, loops);
     }
     
 }
