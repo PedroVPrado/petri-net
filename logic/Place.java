@@ -3,11 +3,13 @@ package logic;
 public class Place {
     
 	String id;
+	String name;
     int tokens;
     
 
-    public Place(String id, int tokens) {
+    public Place(String id, String name, int tokens) {
         this.id = id;
+        this.name = name;
 		this.tokens = tokens;
     }
 

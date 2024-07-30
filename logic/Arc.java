@@ -29,6 +29,10 @@ public class Arc {
 	public String getPlace() {
 		return place.getId();
 	}
+	
+	public String getId() {
+		return this.id;
+	}
 
 	public int getCost() {
 		return this.tokenCost;
@@ -39,7 +43,7 @@ public class Arc {
     }
     
     public void trigger() {
-		if (type == "pre") {
+		if (type.equals("pre")) {
 			this.place.removeTokens(this.tokenCost);
 		} else {
         	this.place.addTokens(this.tokenCost);

@@ -4,13 +4,14 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
 
 public class PnmlReader {
 
-    public void readPNMLFile(String filename) {
+	public void readPNMLFile(String filename) {
         try {
             File file = new File(filename);
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -32,7 +33,9 @@ public class PnmlReader {
             for (int i = 0; i < placeList.getLength(); i++) {
                 Element placeElement = (Element) placeList.item(i);
                 String placeId = placeElement.getAttribute("id");
-                System.out.println("\tPlace ID: " + placeId);
+                String placeName = getTextContentByTagName(placeElement, "name");
+                String initialMarking = getTextContentByTagName(placeElement, "initialMarking");
+                System.out.println("\tPlace ID: " + placeId + ", Name: " + placeName + ", Initial Marking: " + initialMarking);
             }
 
             // Get all transitions
@@ -41,7 +44,8 @@ public class PnmlReader {
             for (int i = 0; i < transitionList.getLength(); i++) {
                 Element transitionElement = (Element) transitionList.item(i);
                 String transitionId = transitionElement.getAttribute("id");
-                System.out.println("\tTransition ID: " + transitionId);
+                String transitionName = getTextContentByTagName(transitionElement, "name");
+                System.out.println("\tTransition ID: " + transitionId + ", Name: " + transitionName);
             }
 
             // Get all arcs
@@ -52,11 +56,22 @@ public class PnmlReader {
                 String arcId = arcElement.getAttribute("id");
                 String source = arcElement.getAttribute("source");
                 String target = arcElement.getAttribute("target");
-                System.out.println("\tArc ID: " + arcId + ", Source: " + source + ", Target: " + target);
+                String inscription = getTextContentByTagName(arcElement, "inscription");
+                System.out.println("\tArc ID: " + arcId + ", Source: " + source + ", Target: " + target + ", Inscription: " + inscription);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private String getTextContentByTagName(Element parent, String tagName) {
+        NodeList nodeList = parent.getElementsByTagName(tagName);
+        if (nodeList.getLength() > 0) {
+            Node node = nodeList.item(0);
+            return node.getTextContent().trim();
+        }
+        return "";
+    }
+    
 }

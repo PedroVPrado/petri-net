@@ -28,25 +28,7 @@ public class Petrinet {
     }
 
 	public void setUp() {
-		t1 = new Transition("t1");
-		this.transitions.add(t1);
-		p1 = new Place("p1", 2);
-		this.places.add(p1);
-		p2 = new Place("p2", 1);
-		this.places.add(p2);
-		Arc a1 = new Arc("a1", p1, t1, 1);
-		this.arcs.add(a1);
-		Arc a2 = new Arc("a2", t1, p2, 2);
-		this.arcs.add(a2);
-		
-		t2 = new Transition("t2");
-		this.transitions.add(t2);
-		p3 = new Place("p3", 1);
-		this.places.add(p3);
-		Arc a3 = new Arc("a3", p2, t2, 1);
-		this.arcs.add(a3);
-		Arc a4 = new Arc("a4", t2, p3, 1);
-		this.arcs.add(a4);
+
 
 		this.run();
 	}
