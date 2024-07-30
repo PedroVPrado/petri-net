@@ -1,7 +1,4 @@
-import logic.Arc;
 import logic.Petrinet;
-import logic.Place;
-import logic.Transition;
  
 public class PetriGenerator {
  
@@ -17,7 +14,7 @@ public class PetriGenerator {
 		System.out.println("Filename: " + filename);
         System.out.println("N: " + loops);
 
-        Petrinet pn = new Petrinet(filename, loops);
+        new Petrinet(filename, loops);
     }
     
 }

@@ -34,12 +34,12 @@ public class Transition {
 		String log = "Transição " + this.id + " ativada.";
         for (Arc arc : this.entryArcs) {
             arc.trigger();
-			log += "/n Removeu " + arc.getCost() + " tokens de " + arc.getPlace();
+			log += "\n Removeu " + arc.getCost() + " tokens de " + arc.getPlace();
         }
 
 		for (Arc arc : this.exitArcs) {
             arc.trigger();
-			log += "/n Adicionou " + arc.getCost() + " tokens de " + arc.getPlace();
+			log += "\n Adicionou " + arc.getCost() + " tokens de " + arc.getPlace();
         }
 		return log;
     }
